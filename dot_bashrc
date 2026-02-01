@@ -1,7 +1,6 @@
 #
 # ~/.bashrc
 #
-# should be a change
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
