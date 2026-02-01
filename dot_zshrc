@@ -131,6 +131,7 @@ cpush() {
   git add .
   git commit -m "$msg"
   git push
+  cd
 }
 
 kitty-reload() {
