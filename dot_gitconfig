@@ -1,0 +1,7 @@
+[user]
+	name = Jakob Kunze
+    email = kunzejakob2@gmail.com 
+	#email = j.kunze@campus.tu-berlin.de 
+
+[advice]
+	detachedHead = false

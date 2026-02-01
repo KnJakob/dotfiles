@@ -122,6 +122,16 @@ alias ce='chezmoi edit'
 alias cdf='chezmoi diff'
 alias ci='chezmoi init git@github.com:KnJakob/dotfiles.git'
 alias cia='chezmoi init --apply git@github.com:KnJakob/dotfiles.git'
+cpush() {
+  local msg="${1:-update dotfiles}"
+  local dir
+  dir="$(chezmoi source-path)"
+
+  cd "$dir" || return 1
+  git add .
+  git commit -m "$msg"
+  git push
+}
 
 kitty-reload() {
     kill -SIGUSR1 $(pidof kitty)
