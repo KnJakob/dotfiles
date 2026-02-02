@@ -11,7 +11,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="sorin" # set by `omz`
 # ZSH_THEME="superjarin"
 ZSH_THEME="sunaku"
+# ZSH_THEME="kphoen" 
 
+
+eval "$(/Users/jakob.kunze/.local/bin/mise activate zsh)"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -122,6 +125,17 @@ alias ce='chezmoi edit'
 alias cdf='chezmoi diff'
 alias ci='chezmoi init git@github.com:KnJakob/dotfiles.git'
 alias cia='chezmoi init --apply git@github.com:KnJakob/dotfiles.git'
+alias b="balena"
+alias bl="balena login"
+alias bp="balena push"
+alias bb="balena build -d raspberrypi5"
+alias bd="balena deploy"
+alias bdd="balena deploy Development"
+alias bdm="balena deploy Mirantus-Demo"
+
+alias cdd="cd ~/Documents"
+alias cb="cd .."
+
 cpush() {
   local msg="${1:-update dotfiles}"
   local dir
