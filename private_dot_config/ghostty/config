@@ -49,4 +49,4 @@
 # resize-overlay-duration = 4s 200ms
 background = 282c34
 foreground = ffffff
-keybind = super+r = new_split:right
+# keybind = super+r = new_split:right
