@@ -12,7 +12,7 @@ ZSH_THEME="spaceship"
 
 # Spaceship settings
 SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_PROMPT_ADD_NEWLINE=true
+# SPACESHIP_PROMPT_ADD_NEWLINE=true
 # SPACESHIP_CHAR_SYMBOL="⚡"
 
 # Minimal spaceship sections for performance
