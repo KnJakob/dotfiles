@@ -13,6 +13,8 @@ vim.o.winborder = "rounded"
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set({'n', 'i', 'x','v'}, '<leader>sh', ':split ')
+vim.keymap.set({'n', 'i', 'x','v'}, '<leader>sv', ':vsplit ')
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p')
@@ -24,10 +26,10 @@ vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.pick" },     -- file picker with fuzzy finding: alternative - telescope
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" }, -- preview for typst language
 	{ src = "https://github.com/mason-org/mason.nvim" },      -- lsp manager nvim
-	{ src = "https://github.com/lewis6991/hover.nvim" },      -- information when cursor is on a word
 })
 -- omni complete -> look further into ctrl+x
 -- ctrl+x to trigger, then ctrl+o - move with ctrl+n, ctrl+p
+-- ctrl+w and d to trigger hover mode
 
 -- tell nvim to use autocomplete from lsp
 vim.api.nvim_create_autocmd('LspAttach', {
