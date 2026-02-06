@@ -3,8 +3,7 @@ BasedOnStyle: LLVM
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
 AlignTrailingComments: true
-AllowShortIfStatementsOnASingleLine: true
-AllowShortLoopsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: Never 
 BreakBeforeBraces: Linux # break on functions, namespace, class function
 ColumnLimit: 100 
 IndentCaseLabels: true  # case statements
