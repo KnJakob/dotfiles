@@ -1,0 +1,14 @@
+Language: Cpp # for C and CPP
+BasedOnStyle: LLVM
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignTrailingComments: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+BreakBeforeBraces: Linux # break on functions, namespace, class function
+ColumnLimit: 100 
+IndentCaseLabels: true  # case statements
+IndentWidth: 4
+SortIncludes: true
+TabWidth: 4
+UseTab: Always # maybe Never is better? 
