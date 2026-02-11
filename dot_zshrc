@@ -61,6 +61,8 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 # bind to ctrl+space
 bindkey '6;5u' autosuggest-accept
+# bind to ctrl space 
+# bindkey '^@' autosuggest-accept
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
