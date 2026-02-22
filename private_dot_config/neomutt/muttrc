@@ -1,0 +1,43 @@
+source ~/.config/neomutt/credentials.muttrc
+# === Behavior ===
+set move = no
+set imap_keepalive = 300
+set mail_check = 60
+
+# === UI ===
+set sort = threads
+set editor = "neovim"
+set charset = "utf-8"
+set sort = reverse-date
+set resolve = yes
+
+# Sidebar (optional but recommended)
+set sidebar_visible = yes
+set sidebar_width = 30
+set sidebar_short_path = yes
+set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
+set mail_check_stats
+
+set index_format="%4C %Z %@date@ %-20.20F %s"
+# set index_format="%4C %Z %@date@ %@from_flagged@ %s"
+
+index-format-hook  date  "~d<1d"    "%[%H:%M]"
+index-format-hook  date  "~d<1w"    "%[%a %d]"
+index-format-hook  date  "~d<1y"    "%[%b %d]"
+index-format-hook  date  "~A"       "%[%m/%y]"
+# index-format-hook  from_flagged  "~f pressestelle@tu-berlin.de"  "TU"
+# index-format-hook  from_flagged  "~f pressestelle@tu-berlin.de"  "TU"
+# index-format-hook  from_flagged  "~A"  %-20.20F
+
+set color_directcolor = yes #truecolor
+
+color normal      #6f94b1 #25252f 
+color status      #282828 #00aabb
+color indicator   #f3be7c default 
+color error       #fb4934 #25252f
+color index_date   #7ea562 #141414
+color index_number #aabb00 #25252f 
+color index_author #d9647e #25252f
+color index_author #d95da6 #25252f "~f pressestelle@tu-berlin.de"
+color index_author #d95da6 #25252f "~f versand@zuv.tu-berlin.de"
+
