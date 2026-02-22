@@ -104,6 +104,8 @@ alias bdm="balena deploy Mirantus-Demo"
 alias cdd="cd ~/Documents"
 alias cb="cd .."
 
+alias neomutt="TERM=xterm-direct neomutt"
+
 # push all changes to chezmoi
 cpush() {
   local msg="${1:-update dotfiles}"
