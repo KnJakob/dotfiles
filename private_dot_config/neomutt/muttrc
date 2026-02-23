@@ -1,4 +1,4 @@
-source ~/.config/neomutt/credentials.muttrc
+source ~/.config/neomutt/muttrc.credentials
 # === Behavior ===
 set move = no
 set imap_keepalive = 300
