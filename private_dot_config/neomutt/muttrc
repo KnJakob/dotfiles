@@ -35,9 +35,28 @@ color normal      #6f94b1 #25252f
 color status      #282828 #00aabb
 color indicator   #f3be7c default 
 color error       #fb4934 #25252f
+# color @date@ 	  #7ea562 default 
+color index 	   #bb9ebd default
 color index_date   #7ea562 #141414
 color index_number #aabb00 #25252f 
 color index_author #d9647e #25252f
 color index_author #d95da6 #25252f "~f pressestelle@tu-berlin.de"
 color index_author #d95da6 #25252f "~f versand@zuv.tu-berlin.de"
+color index_subject #6f94b1 default
 
+#Mail Pager
+color body        #6f94b1 #25252f
+color header      #d9647e #25252f "^From:"
+color header      #d9647e #25252f "^To:"
+color header      #aabb00 #25252f "^Cc:"
+color header      #bb9ebd #25252f "^Date:"
+color header      #f3be7c #25252f "^Subject:"
+
+color quoted      #7ea562 #25252f
+color quoted1     #6f94b1 #25252f
+color quoted2     #d9647e #25252f
+color signature   #666666 #25252f
+color body        #00aabb #25252f "(https?|ftp)://[^ ]+"
+
+color search      #282828 #f3be7c
+color indicator   #f3be7c default
