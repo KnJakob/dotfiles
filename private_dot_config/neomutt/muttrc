@@ -6,9 +6,12 @@ set mail_check = 60
 
 # === UI ===
 set sort = threads
+set sort_aux = reverse-last-date-received
+set strict_threads = yes
+set thread_received = yes
 set editor = "neovim"
 set charset = "utf-8"
-set sort = reverse-date
+# set sort = reverse-date
 set resolve = yes
 
 # Sidebar (optional but recommended)
