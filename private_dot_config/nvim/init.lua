@@ -15,7 +15,6 @@ vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sh', ':split ')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sv', ':vsplit ')
-vim.keymap.set('n', 'gr', vim.lsp.buf.references)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
@@ -31,6 +30,8 @@ vim.pack.add({
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },          -- completions ui to interact with lsps
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },      -- connects cmp with nvim-lsp manager
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },          -- shows code snippets
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },                -- 
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 })
 -- omni complete -> look further into ctrl+x
 -- ctrl+x to trigger, then ctrl+o - move with ctrl+n, ctrl+p
@@ -47,11 +48,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 vim.cmd("set completeopt+=noselect")
 
+-- close window when go to reference
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true })
+	end,
+})
+
 -- require("hover").setup()
 require("mason").setup()
 require("mini.pick").setup()
 require("oil").setup()
+-- vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+local builtin = require("telescope.builtin")
 
+vim.keymap.set("n", "<leader>ff", builtin.find_files)
+vim.keymap.set("n", "<leader>fg", builtin.live_grep)
+vim.keymap.set("n", "<leader>fb", builtin.buffers)
+vim.keymap.set("n", "<leader>fh", builtin.help_tags)
+vim.keymap.set("n", "gr", builtin.lsp_references)
+vim.keymap.set("n", "gd", builtin.lsp_definitions)
 -- lsp commands
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
@@ -93,8 +110,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "pyright" })
+vim.lsp.enable({ "lua_ls", "clangd", "pyright", "ts_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+
+vim.lsp.config("ts_ls", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
+})
 
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
