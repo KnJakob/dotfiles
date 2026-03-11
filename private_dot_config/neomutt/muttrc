@@ -4,6 +4,14 @@ set move = no
 set imap_keepalive = 300
 set mail_check = 60
 
+# === IMAP Lazy Loading ===
+set imap_fetch_chunk_size = 100
+set imap_pipeline_depth = 5
+
+# Header & Body Cache (wichtig für Performance)
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
+
 # === UI ===
 set sort = threads
 set sort_aux = reverse-last-date-received
