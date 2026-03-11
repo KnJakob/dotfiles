@@ -109,14 +109,15 @@ alias neomutt="TERM=xterm-direct neomutt"
 # push all changes to chezmoi
 cpush() {
   local msg="${1:-update dotfiles}"
-  local dir
+  local dir start_dir
+  start_dir="$PWD"
   dir="$(chezmoi source-path)"
 
   cd "$dir" || return 1
   git add .
   git commit -m "$msg"
   git push
-  cd
+  cd "$start_dir" || return 1
 }
 
 kitty-reload() {
