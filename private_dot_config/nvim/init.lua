@@ -58,6 +58,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- require("hover").setup()
 require("mason").setup()
+vim.api.nvim_create_user_command("LspInstallAll", function()
+	vim.cmd("MasonInstall lua-language-server clangd pyright typescript-language-server dockerfile-language-server")
+end, { desc = "Install configured LSP servers with Mason" })
+
 require("mini.pick").setup()
 require("oil").setup()
 -- vim.keymap.set('n', 'gr', vim.lsp.buf.references)
@@ -93,24 +97,21 @@ cmp.setup({
 	},
 })
 
-vim.lsp.config.pyright = {
+vim.lsp.config("pyright", {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	root_markers = { ".git", "pyproject.toml", "setup.py" },
+	root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
 	capabilities = capabilities,
-}
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
-	callback = function()
-		vim.lsp.start({
-			name = "pyright",
-			cmd = { "pyright-langserver", "--stdio" },
-			root_dir = vim.fn.getcwd(),
-		})
-	end,
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "pyright", "ts_ls" })
+vim.lsp.config("dockerls", {
+	cmd = { "docker-langserver", "--stdio" },
+	filetypes = { "dockerfile" },
+	root_markers = { "Dockerfile", ".git" },
+	capabilities = capabilities,
+})
+
+vim.lsp.enable({ "lua_ls", "clangd", "pyright", "dockerls", "ts_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.lsp.config("ts_ls", {
