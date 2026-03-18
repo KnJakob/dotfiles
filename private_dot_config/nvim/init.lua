@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
 require("mason").setup()
 vim.api.nvim_create_user_command("LspInstallAll", function()
 	vim.cmd(
-		"MasonInstall lua-language-server clangd pyright typescript-language-server dockerfile-language-server yaml-language-server bash-language-server")
+		"MasonInstall lua-language-server clangd ty typescript-language-server dockerfile-language-server yaml-language-server bash-language-server")
 end, { desc = "Install configured LSP servers with Mason" })
 
 require("mini.pick").setup()
@@ -105,8 +105,8 @@ cmp.setup({
 	},
 })
 
-vim.lsp.config("pyright", {
-	cmd = { "pyright-langserver", "--stdio" },
+vim.lsp.config("ty", {
+	cmd = { "ty", "server" },
 	filetypes = { "python" },
 	root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
 	capabilities = capabilities,
@@ -142,7 +142,7 @@ vim.lsp.config("bashls", {
 	root_markers = { ".git", "package.json" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "pyright", "dockerls", "ts_ls", "bashls", "yamlls" })
+vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")

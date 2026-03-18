@@ -79,9 +79,9 @@ source $ZSH/oh-my-zsh.sh
 alias ra='ranger'
 alias v='vim'
 alias n='nvim'
+alias z='zoxide'
 alias do='dooit'
 alias cdd='cd Documents'
-alias z='zellij'
 alias cdb='cd ..'
 alias c='clear'
 # chezmoi
