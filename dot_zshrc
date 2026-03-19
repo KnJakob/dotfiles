@@ -79,7 +79,6 @@ source $ZSH/oh-my-zsh.sh
 alias ra='ranger'
 alias v='vim'
 alias n='nvim'
-alias z='zoxide'
 alias do='dooit'
 alias cdd='cd Documents'
 alias cdb='cd ..'
@@ -131,3 +130,4 @@ fi
 
 # Created by `pipx` on 2026-01-12 12:31:21
 export PATH="$PATH:/home/jakobkunze/.local/bin"
+eval "$(zoxide init zsh --cmd cd)"
