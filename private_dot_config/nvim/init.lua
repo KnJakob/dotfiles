@@ -32,6 +32,7 @@ vim.pack.add({
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },             -- shows code snippets
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, --
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 -- omni complete -> look further into ctrl+x
 -- ctrl+x to trigger, then ctrl+o - move with ctrl+n, ctrl+p
@@ -65,13 +66,18 @@ end, { desc = "Install configured LSP servers with Mason" })
 
 require("mini.pick").setup()
 require("oil").setup()
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
-	callback = function()
-		vim.treesitter.start()
-	end,
+require("nvim-treesitter").setup { -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site',
+  ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html" }, -- Example parsers
+  sync_install = false,
+  highlight = { enable = true },
+  indent = { enable = true },
+}
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python' },
+  callback = function() vim.treesitter.start() end,
 })
+
 -- vim.keymap.set('n', 'gr', vim.lsp.buf.references)
 local builtin = require("telescope.builtin")
 
