@@ -10,6 +10,11 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# macOS: Activates mise for the current zsh session by executing its generated shell configuration.
+if [[ "$(uname)" == "Darwin" && -x "$HOME/.local/bin/mise" ]]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -32,7 +37,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
-# zinit snippet OMZL::git.zsh
+zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
@@ -42,11 +47,19 @@ zinit snippet OMZP::docker-compose
 
 # Load completions
 autoload -Uz compinit && compinit
+COMPLETION_WAITING_DOTS="true"
 
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
 
 # Keybindings
 bindkey -e
@@ -80,6 +93,41 @@ alias n='nvim'
 alias c='clear'
 alias ra='ranger'
 alias v='vim'
+alias d='dooit'
+
+alias ch='chezmoi'
+alias cav='chezmoi apply -v' # apply all changes verbose
+alias ca='chezmoi add'
+alias ce='chezmoi edit'
+alias cdf='chezmoi diff'
+alias ci='chezmoi init git@github.com:KnJakob/dotfiles.git'
+alias cia='chezmoi init --apply git@github.com:KnJakob/dotfiles.git'
+
+alias b="balena"
+alias bl="balena login"
+alias bp="balena push"
+alias bb="balena build -d raspberrypi5"
+alias bd="balena deploy"
+alias bdd="balena deploy Development"
+
+alias neomutt="TERM=xterm-direct neomutt"
+
+# push all changes to chezmoi
+cpush() {
+  local msg="${1:-update dotfiles}"
+  local dir start_dir
+  start_dir="$PWD"
+  dir="$(chezmoi source-path)"
+
+  cd "$dir" || return 1
+  git add .
+  git commit -m "$msg"
+  git push
+  cd "$start_dir" || return 1
+}
+
+# Created by `pipx` on 2026-01-12 12:31:21
+export PATH="$PATH:/home/jakobkunze/.local/bin"
 
 # Shell integrations
 eval "$(fzf --zsh)"
