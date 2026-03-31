@@ -16,20 +16,26 @@ vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sh', ':split ')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sv', ':vsplit ')
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<leader>d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end)
+vim.keymap.set("n", "<leader>r", function()
+	vim.diagnostic.show()
+end)
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p')
 
 vim.pack.add({
-	{ src = "https://github.com/vague2k/vague.nvim" },           -- fresh theme
-	{ src = "https://github.com/stevearc/oil.nvim" },            -- file system editor - edit like a buffer
-	{ src = "https://github.com/neovim/nvim-lspconfig" },        -- configs for lsps
-	{ src = "https://github.com/echasnovski/mini.pick" },        -- file picker with fuzzy finding: alternative - telescope
+	{ src = "https://github.com/vague2k/vague.nvim" },         -- fresh theme
+	{ src = "https://github.com/stevearc/oil.nvim" },          -- file system editor - edit like a buffer
+	{ src = "https://github.com/neovim/nvim-lspconfig" },      -- configs for lsps
+	{ src = "https://github.com/echasnovski/mini.pick" },      -- file picker with fuzzy finding: alternative - telescope
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" }, -- preview for typst language
-	{ src = "https://github.com/mason-org/mason.nvim" },         -- lsp manager nvim
-	{ src = "https://github.com/hrsh7th/nvim-cmp" },             -- completions ui to interact with lsps
-	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },         -- connects cmp with nvim-lsp manager
-	{ src = "https://github.com/L3MON4D3/LuaSnip" },             -- shows code snippets
+	{ src = "https://github.com/mason-org/mason.nvim" },       -- lsp manager nvim
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },           -- completions ui to interact with lsps
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },       -- connects cmp with nvim-lsp manager
+	{ src = "https://github.com/L3MON4D3/LuaSnip" },           -- shows code snippets
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, --
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -66,16 +72,16 @@ end, { desc = "Install configured LSP servers with Mason" })
 
 require("mini.pick").setup()
 require("oil").setup()
-require("nvim-treesitter").setup { -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
-  install_dir = vim.fn.stdpath('data') .. '/site',
-  ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html" }, -- Example parsers
-  sync_install = false,
-  highlight = { enable = true },
-  indent = { enable = true },
+require("nvim-treesitter").setup {                                    -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+	install_dir = vim.fn.stdpath('data') .. '/site',
+	ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html" }, -- Example parsers
+	sync_install = false,
+	highlight = { enable = true },
+	indent = { enable = true },
 }
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python' },
-  callback = function() vim.treesitter.start() end,
+	pattern = { 'python' },
+	callback = function() vim.treesitter.start() end,
 })
 
 -- vim.keymap.set('n', 'gr', vim.lsp.buf.references)
@@ -88,7 +94,7 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "gd", builtin.lsp_definitions)
 -- lsp commands
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
+-- vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
@@ -109,6 +115,15 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 	},
+})
+
+vim.diagnostic.config({
+	underline = true,
+	signs = true,
+	virtual_text = { prefix = "●" },
+	virtual_lines = false,
+	update_in_insert = true,
+	severity_sort = true,
 })
 
 vim.lsp.config("ty", {
@@ -153,4 +168,3 @@ vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
-
