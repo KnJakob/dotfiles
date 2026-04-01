@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes"
@@ -39,6 +41,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, --
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/github/copilot.vim.git" },
 })
 -- omni complete -> look further into ctrl+x
 -- ctrl+x to trigger, then ctrl+o - move with ctrl+n, ctrl+p
@@ -109,8 +112,6 @@ local cmp = require("cmp")
 cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<S-Tab>"] = cmp.mapping.select_prev_item(),
 	}),
 	sources = {
 		{ name = "nvim_lsp" },
