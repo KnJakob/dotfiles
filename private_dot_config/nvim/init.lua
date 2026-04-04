@@ -96,6 +96,16 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "gd", builtin.lsp_definitions)
+
+-- open fuzzy finder when opened without a file
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if #vim.api.nvim_list_uis() > 0 and vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" and vim.bo.buftype == "" then
+			vim.schedule(function() builtin.find_files() end)
+		end
+	end,
+})
+
 -- lsp commands
 -- vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
