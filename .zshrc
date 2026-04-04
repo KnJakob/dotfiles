@@ -114,11 +114,11 @@ alias bdd="balena deploy Development"
 alias neomutt="TERM=xterm-direct neomutt"
 
 # push all changes to chezmoi
-cpush() {
+spush() {
   local msg="${1:-update dotfiles}"
   local dir start_dir
   start_dir="$PWD"
-  dir="$(chezmoi source-path)"
+  dir="$HOME/dotfiles"
 
   cd "$dir" || return 1
   git add .
