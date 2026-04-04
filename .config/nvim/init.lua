@@ -178,4 +178,7 @@ vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamll
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
+-- also try out:
+-- kanagawa.nvim
+-- monokai-pro.nvim
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
