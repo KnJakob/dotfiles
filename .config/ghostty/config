@@ -3,7 +3,7 @@ foreground = ffffff
 # macos-option-as-alt = true
 
 font-family = "JetBrainsMono Nerd Font Mono"
-font-size = 11
+font-size = 13
 
 # =========================
 # Keybindings
