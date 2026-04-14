@@ -8,3 +8,6 @@
 
 [pull]
 	rebase = true
+
+[merge]
+	tool = nvimdiff
