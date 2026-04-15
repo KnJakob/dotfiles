@@ -68,6 +68,8 @@ end)
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },         -- fresh theme
+	{ src = "https://github.com/rebelot/kanagawa.nvim" },      -- another theme
+	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },      -- another theme
 	{ src = "https://github.com/stevearc/oil.nvim" },          -- file system editor - edit like a buffer
 	{ src = "https://github.com/neovim/nvim-lspconfig" },      -- configs for lsps
 	{ src = "https://github.com/echasnovski/mini.pick" },      -- file picker with fuzzy finding: alternative - telescope
@@ -216,7 +218,6 @@ vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamll
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
--- also try out:
--- kanagawa.nvim
--- monokai-pro.nvim
+-- vim.cmd("colorscheme kanagawa-dragon") -- also wave and lotus
+vim.cmd("colorscheme monokai-pro-octagon") -- ristretto, spectrum, classic
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
