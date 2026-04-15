@@ -15,7 +15,7 @@ vim.o.winborder = "rounded"
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
-vim.keymap.set('n', '<leader>b', ':bd<CR>')
+vim.keymap.set('n', '<leader>b', ':bw!')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sh', ':split ')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sv', ':vsplit ')
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.keymap.set('t', '<C-w>e', "<C-\\><C-n>",{silent = true})
 
 local job_id = 0
-vim.keymap.set("n", "<leader>to", function()
+vim.keymap.set("n", "<leader>to", function() --small terminal
 	vim.cmd.vnew()
 	vim.cmd.term()
 	vim.cmd.wincmd("J")
@@ -50,12 +50,19 @@ vim.keymap.set("n", "<leader>to", function()
 end)
 
 local current_command = ""
+-- repeat command in small terminal
 vim.keymap.set("n", "<space>tr", function()
-  if current_command == "" then
-    current_command = vim.fn.input("Command: ")
-  end
+	if current_command == "" then
+		current_command = vim.fn.input("Command: ")
+	end
 
-  vim.fn.chansend(job_id, { current_command .. "\r\n" })
+	vim.fn.chansend(job_id, { current_command .. "\r\n" })
+end)
+-- set command in small terminal
+vim.keymap.set("n", "<space>te", function()
+	current_command = vim.fn.input("Command: ")
+
+	vim.fn.chansend(job_id, { current_command .. "\r\n" })
 end)
 
 vim.pack.add({
