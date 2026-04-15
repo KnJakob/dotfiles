@@ -37,7 +37,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.opt.relativenumber = false
 	end,
 })
-vim.keymap.set('t', '<C-w>e', "<C-\\><C-n>",{silent = true})
+vim.keymap.set('t', '<C-w>e', "<C-\\><C-n>", { silent = true })
+vim.keymap.set({ 'n', 't' }, "<leader>tt", ":Floaterminal<CR>")
 
 local job_id = 0
 vim.keymap.set("n", "<leader>to", function() --small terminal
