@@ -15,6 +15,7 @@ vim.o.winborder = "rounded"
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>b', ':bw!')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sh', ':split ')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sv', ':vsplit ')
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
@@ -27,6 +28,43 @@ end)
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p')
+
+-- Terminal in nvim ?!?!
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+vim.keymap.set('t', '<C-w>e', "<C-\\><C-n>", { silent = true })
+vim.keymap.set({ 'n', 't' }, "<leader>tt", ":Floaterminal<CR>")
+
+local job_id = 0
+vim.keymap.set("n", "<leader>to", function() --small terminal
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 5)
+
+	job_id = vim.bo.channel
+end)
+
+local current_command = ""
+-- repeat command in small terminal
+vim.keymap.set("n", "<space>tr", function()
+	if current_command == "" then
+		current_command = vim.fn.input("Command: ")
+	end
+
+	vim.fn.chansend(job_id, { current_command .. "\r\n" })
+end)
+-- set command in small terminal
+vim.keymap.set("n", "<space>te", function()
+	current_command = vim.fn.input("Command: ")
+
+	vim.fn.chansend(job_id, { current_command .. "\r\n" })
+end)
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },         -- fresh theme
