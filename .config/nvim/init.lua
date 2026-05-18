@@ -15,6 +15,7 @@ vim.o.winborder = "rounded"
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>Q', ':quitall<CR>')
 vim.keymap.set('n', '<leader>b', ':bw!')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sh', ':split ')
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>sv', ':vsplit ')
