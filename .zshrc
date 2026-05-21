@@ -128,7 +128,7 @@ spush() {
 }
 
 # Created by `pipx` on 2026-01-12 12:31:21
-export PATH="$PATH:/home/jakobkunze/.local/bin"
+export PATH="$PATH:/home/kunzeja/.local/bin"
 
 # Shell integrations
 eval "$(fzf --zsh)"
