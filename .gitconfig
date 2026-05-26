@@ -2,6 +2,7 @@
 	name = Jakob Kunze
 	; email = kunzejakob2@gmail.com
 	email = jakob.kunze@mirantus.com
+	signingkey = /Users/jakob.kunze/.ssh/id_ed25519.pub
 	#email = j.kunze@campus.tu-berlin.de 
 
 [advice]
@@ -12,3 +13,7 @@
 
 [merge]
 	tool = nvimdiff
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
