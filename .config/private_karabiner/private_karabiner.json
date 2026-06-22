@@ -160,6 +160,19 @@
                         ]
                     },
                     {
+                        "description": "Hyper+M launches Obsidian",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["control", "option", "shift", "command"] }
+                                },
+                                "to": [{ "shell_command": "open -a 'Obsidian'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Change caps lock to hyper key",
                         "manipulators": [
                             {
