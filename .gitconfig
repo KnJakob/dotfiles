@@ -11,3 +11,5 @@
 
 [merge]
 	tool = nvimdiff
+[core]
+	editor = nvim
