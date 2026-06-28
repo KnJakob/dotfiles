@@ -70,7 +70,7 @@ end)
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },         -- fresh theme
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },      -- another theme
-	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },      -- another theme
+	{ src = "https://github.com/loctvl842/monokai-pro.nvim" }, -- another theme
 	{ src = "https://github.com/stevearc/oil.nvim" },          -- file system editor - edit like a buffer
 	{ src = "https://github.com/neovim/nvim-lspconfig" },      -- configs for lsps
 	{ src = "https://github.com/echasnovski/mini.pick" },      -- file picker with fuzzy finding: alternative - telescope
@@ -106,6 +106,21 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true })
 	end,
 })
+
+-- show selected lines/characters in the statusline while in visual mode
+function _G.char_and_line_count()
+	local mode = vim.fn.mode()
+	if mode:find("[vV\22]") then
+		local ln_beg = vim.fn.line("v")
+		local ln_end = vim.fn.line(".")
+		local lines = math.abs(ln_end - ln_beg) + 1
+		local chars = vim.fn.wordcount().visual_chars or 0
+
+		return chars .. " Chars / " .. lines .. " Lines"
+	end
+
+	return ""
+end
 
 -- require("hover").setup()
 require("mason").setup()
@@ -215,10 +230,12 @@ vim.lsp.config("bashls", {
 	root_markers = { ".git", "package.json" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls" })
+vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls", "tinymist" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
 -- vim.cmd("colorscheme kanagawa-dragon") -- also wave and lotus
 vim.cmd("colorscheme monokai-pro-octagon") -- ristretto, spectrum, classic
+-- statusline: filename on the left, visual selection count centered, position right
+vim.o.statusline = " %f %m%r %=%{v:lua.char_and_line_count()}%= %l:%c  %P "
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
