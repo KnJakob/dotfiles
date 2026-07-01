@@ -1,0 +1,11 @@
+# config is overwritten by local config
+# currently no setting is parsed due to top level overwrites
+# -> copy these settings manually in project
+preferred_case = "lower"
+
+[lint]
+unnecessary_work_library = false
+unused = 'error'
+
+[libraries]
+lib.files = []
