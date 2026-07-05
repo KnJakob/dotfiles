@@ -108,6 +108,21 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- show selected lines/characters in the statusline while in visual mode
+function _G.char_and_line_count()
+	local mode = vim.fn.mode()
+	if mode:find("[vV\22]") then
+		local ln_beg = vim.fn.line("v")
+		local ln_end = vim.fn.line(".")
+		local lines = math.abs(ln_end - ln_beg) + 1
+		local chars = vim.fn.wordcount().visual_chars or 0
+
+		return chars .. " Chars / " .. lines .. " Lines"
+	end
+
+	return ""
+end
+
 -- require("hover").setup()
 require("mason").setup()
 vim.api.nvim_create_user_command("LspInstallAll", function()
@@ -227,4 +242,6 @@ vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.cmd("colorscheme vague")
 -- vim.cmd("colorscheme kanagawa-dragon") -- also wave and lotus
 vim.cmd("colorscheme monokai-pro-octagon") -- ristretto, spectrum, classic
+-- statusline: filename on the left, visual selection count centered, position right
+vim.o.statusline = " %f %m%r %=%{v:lua.char_and_line_count()}%= %l:%c  %P "
 vim.cmd(":hi statusline guibg=NONE")       --no bg for status line
