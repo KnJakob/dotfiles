@@ -157,6 +157,10 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "gd", builtin.lsp_definitions)
+vim.keymap.set("n", "gs", builtin.git_status)
+vim.keymap.set("n", "gcm", builtin.git_commits) -- show all commits
+vim.keymap.set("n", "gcb", builtin.git_bcommits) -- show commits for this buffer
+vim.keymap.set("n", "gb", builtin.git_branches)
 
 -- open fuzzy finder when opened without a file
 vim.api.nvim_create_autocmd("VimEnter", {
