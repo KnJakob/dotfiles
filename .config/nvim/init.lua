@@ -73,7 +73,7 @@ vim.pack.add({
 	{ src = "https://github.com/loctvl842/monokai-pro.nvim" }, -- another theme
 	{ src = "https://github.com/stevearc/oil.nvim" },          -- file system editor - edit like a buffer
 	{ src = "https://github.com/neovim/nvim-lspconfig" },      -- configs for lsps
-	{ src = "https://github.com/echasnovski/mini.pick" },      -- file picker with fuzzy finding: alternative - telescope
+	{ src = "https://github.com/nvim-mini/mini.nvim" },        -- file picker with fuzzy finding: alternative - telescope
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" }, -- preview for typst language
 	{ src = "https://github.com/mason-org/mason.nvim" },       -- lsp manager nvim
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },           -- completions ui to interact with lsps
@@ -159,7 +159,7 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "gd", builtin.lsp_definitions)
 vim.keymap.set("n", "gs", builtin.git_status)
-vim.keymap.set("n", "gcm", builtin.git_commits) -- show all commits
+vim.keymap.set("n", "gcm", builtin.git_commits)  -- show all commits
 vim.keymap.set("n", "gcb", builtin.git_bcommits) -- show commits for this buffer
 vim.keymap.set("n", "gb", builtin.git_branches)
 
