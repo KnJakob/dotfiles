@@ -245,7 +245,7 @@ vim.lsp.config("bashls", {
 	root_markers = { ".git", "package.json" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls", "vhdl_ls" })
+vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls", "tinymist", "vhdl_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
