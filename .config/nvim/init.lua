@@ -168,7 +168,11 @@ vim.keymap.set("n", "gb", builtin.git_branches)
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		if #vim.api.nvim_list_uis() > 0 and vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" and vim.bo.buftype == "" then
-			vim.schedule(function() builtin.find_files() end)
+			vim.schedule(function()
+				builtin.find_files({
+					find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+				})
+			end)
 		end
 	end,
 })
