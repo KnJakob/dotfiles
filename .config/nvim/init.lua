@@ -80,10 +80,11 @@ vim.pack.add({
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },           -- completions ui to interact with lsps
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },       -- connects cmp with nvim-lsp manager
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },           -- shows code snippets
-	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, --
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, -- ff, fg, ... all find operations
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },      -- lib for predefined functions, dependency of telescope
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/github/copilot.vim.git" },
+	{ src = "https://github.com/iamcco/markdown-preview.nvim" }, --md preview (':call mkdp#util#install()')
 })
 -- omni complete -> look further into ctrl+x
 -- ctrl+x to trigger, then ctrl+o - move with ctrl+n, ctrl+p
@@ -244,7 +245,7 @@ vim.lsp.config("bashls", {
 	root_markers = { ".git", "package.json" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls", "tinymist" })
+vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamlls", "tinymist", "vhdl_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
