@@ -31,10 +31,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
-zinit light z-shell/F-Sy-H
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light z-shell/F-Sy-H
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
