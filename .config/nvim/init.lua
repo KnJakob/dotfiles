@@ -83,7 +83,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, -- ff, fg, ... all find operations
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },      -- lib for predefined functions, dependency of telescope
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/github/copilot.vim.git" },
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" }, --md preview (':call mkdp#util#install()')
 })
 -- omni complete -> look further into ctrl+x
@@ -249,8 +248,8 @@ vim.lsp.enable({ "lua_ls", "clangd", "ty", "dockerls", "ts_ls", "bashls", "yamll
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
--- vim.cmd("colorscheme kanagawa-dragon") -- also wave and lotus
-vim.cmd("colorscheme monokai-pro-octagon") -- ristretto, spectrum, classic
+vim.cmd("colorscheme kanagawa-wave") -- also wave and lotus
+-- vim.cmd("colorscheme monokai-pro-octagon") -- ristretto, spectrum, classic
 -- statusline: filename on the left, visual selection count centered, position right
 vim.o.statusline = " %f %m%r %=%{v:lua.char_and_line_count()}%= %l:%c  %P "
 vim.cmd(":hi statusline guibg=NONE") --no bg for status line
