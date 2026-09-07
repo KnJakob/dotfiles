@@ -108,7 +108,7 @@ alias cia='chezmoi init --apply git@github.com:KnJakob/dotfiles.git'
 alias b="balena"
 alias bl="balena login"
 alias bp="balena push"
-alias bb="balena build -d raspberrypi5"
+alias bb="balena build -d raspberrypi5 -A aarch64"
 alias bd="balena deploy"
 alias bdd="balena deploy Development"
 
