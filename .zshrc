@@ -32,9 +32,14 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+
+# Load completions
+autoload -Uz compinit && compinit
+COMPLETION_WAITING_DOTS="true"
+
 zinit light z-shell/F-Sy-H
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-autosuggestions
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -44,10 +49,6 @@ zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
-
-# Load completions
-autoload -Uz compinit && compinit
-COMPLETION_WAITING_DOTS="true"
 
 zinit cdreplay -q
 
