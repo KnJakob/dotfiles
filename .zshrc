@@ -33,6 +33,8 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Add in zsh plugins
 zinit light zsh-users/zsh-completions
 
+# add functions dir
+fpath+=~/.zfunc
 # Load completions
 autoload -Uz compinit && compinit
 COMPLETION_WAITING_DOTS="true"
